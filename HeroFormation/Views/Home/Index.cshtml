@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    ViewBag.isHome = true;
+}
+
+<link href="~/css/splash.css" rel="stylesheet" />
+
+<div id="splashBody">
+    <img src="~/images/splash.png" class="splash-img center-block img-responsive" />
+    <div class="form-group" id="loginBtnRow">
+        <div class="row" >
+            <div class="text-center col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4">
+                <button id="loginButton" class="btn">Login</button>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="form-group" id="createAccountBtnRow">
+        <div class="row" >
+            <div class="text-center col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4">
+                <button id="createAccountButton" class="btn">Create Account</button>
+            </div>
+        </div>
+    </div>
+</div>

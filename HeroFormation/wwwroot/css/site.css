@@ -1,0 +1,108 @@
+﻿@font-face {
+    font-family: 'BadaBoom BB';
+    src: url('../fonts/BADABB_.TTF');
+}
+
+body {
+    /*overflow-y: scroll;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;*/
+    -webkit-user-select: none; /* Chrome all / Safari all */
+    -moz-user-select: none; /* Firefox all */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Likely future */
+    font-family: 'BadaBoom BB';
+    color: white;
+    text-shadow: 1px 1px black;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 0px;
+    padding: 0;
+    margin: 0;
+    background: url('../images/skyline.png') no-repeat fixed center;
+    background-size: cover;
+}
+
+.navbar-header {
+    background-color: #0052a5;
+    color: white;
+}
+
+.navbar-brand {
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+.navbar {
+    background-color: #0052a5;
+    color: white;
+}
+
+.navbar a{
+    color: white;
+}
+.navbar-inverse .navbar-brand {
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+.navbar-toggle {
+    background-color: #ed3236;
+}
+
+.navbar-toggle:hover {
+        background-color: #ed3236;
+    }
+
+.navbar-toggle:focus {
+        background-color: #ed3236;
+    }
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #ffff00;
+}
+
+    .navbar-default .navbar-toggle .icon-bar:hover {
+        background-color: #ed3236; /* Changes toggle color on hover */
+    }
+
+
+
+
+    .navbar-inverse .navbar-nav > li > a:hover {
+        color:#ed3236;
+    }
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+
+}
+
+
