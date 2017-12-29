@@ -13,8 +13,6 @@ hr
     /*background-size: cover;*/
     /* Workaround for some mobile browsers */
     min-height: 100%;
-    padding-top: 50px;
-    padding-bottom: 20px;
 }
 
 #splashBody .btn{
@@ -46,6 +44,24 @@ hr
     text-shadow: 1px 1px black;
 }
 
+#loginButton:hover {
+        background-color: #0052a5;
+        color: #ed3236;
+        text-shadow: 1px 1px black;
+    }
+
+#logoutButton {
+    background-color: #0052a5;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+#logoutButton:hover {
+        background-color: #0052a5;
+        color: #ed3236;
+        text-shadow: 1px 1px black;
+    }
+
 #createAccountButton {
     color: white;
     background-color: #ffff00;
@@ -75,7 +91,7 @@ hr
 
     #splashBody {
         position: absolute;
-        left:0px;
+        left:0;
         align-content:center;
     }
 

@@ -25,6 +25,14 @@ body {
     background-size: cover;
 }
 
+.body-content {
+    padding-top: 50px;
+}
+
+label {
+    text-shadow: 1px 1px black;
+}
+
 .navbar-header {
     background-color: #0052a5;
     color: white;
