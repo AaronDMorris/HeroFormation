@@ -19,6 +19,13 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+            @if (User.Identity.IsAuthenticated)
+    {
+        <div class="navbar-brand navbar-right">
+            Hi, @User.Identity.Name
+
+        </div>
+}
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -27,13 +34,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">HeroFormation</a>
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Profile">Profile</a></li>
                     <li><a asp-area="" asp-controller="Crime" asp-action="Crimes">Fight Crime</a></li>
-                    
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>

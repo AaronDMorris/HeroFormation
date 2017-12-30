@@ -31,6 +31,10 @@ namespace HeroFormation
             })
                 .AddEntityFrameworkStores<HeroContext>();
 
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer();
+
             services.AddDbContext<HeroContext>(cfg => 
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("HeroConnectionString"));

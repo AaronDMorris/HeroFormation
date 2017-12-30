@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using HeroFormation.Data.Entities;
 using HeroFormation.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,12 +16,15 @@ namespace HeroFormation.Controllers
     {
         private readonly ILogger<AccountController> _logger;
         private readonly SignInManager<StoreUser> _signInManager;
+        private readonly UserManager<StoreUser> _userManager;
 
         public AccountController(ILogger<AccountController> logger,
-            SignInManager<StoreUser> signInManager)
+            SignInManager<StoreUser> signInManager,
+            UserManager<StoreUser> userManager)
         {
             _logger = logger;
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
 
@@ -29,6 +34,60 @@ namespace HeroFormation.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Profile()
+        {
+            ViewData["Message"] = "Your profile page.";
+
+            return View();
+        }
+
+        //[Authorize]
+        //[HttpGet]
+        //public async Task<IActionResult>Profile(ProfileViewModel model)
+        //{
+            
+        //}
+
+        public IActionResult Create()
+        {
+            
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new StoreUser()
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserName = model.Email,
+                    Email = model.Email
+
+                };
+
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, false);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+
             return View();
         }
 
