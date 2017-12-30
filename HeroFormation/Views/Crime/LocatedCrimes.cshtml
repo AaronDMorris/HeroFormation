@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HeroFormation.Models.Crimes>
 @using System;
 @{
-    ViewBag.Title = "Crimes";
+    ViewBag.Title = "LocatedCrimes";
     ViewBag.isHome = false;
 }
 
@@ -13,11 +13,51 @@
 @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.Street.Name)
+        </th>
+        <th></th>
+    </tr>
 
+    @*@Html.Display(Model.Count)*@
 
-@Html.Partial("~/Views/PartialViews/CrimesTable.cshtml")
+    @foreach (var item in Model)
+    {
 
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Street.Name)
+            </td>
 
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
+
+</table>
 
 @section scripts{
     <script src="~/js/map.js"></script>
@@ -32,7 +72,7 @@
                 var longitude = position.coords.longitude.toString();
 
                 var f = {};
-                f.url = '@Url.Action("Crimes", "Crime")';
+                f.url = '@Url.Action("LocatedCrimes", "Crime")';
                 f.type = "POST";
                 f.dataType = "json";
                 f.data = JSON.stringify({ Latitude: latitude, Longitude: longitude });
@@ -46,13 +86,9 @@
 
                 //};
                 $.ajax(f);
+                window.location.reload(true);
 
             };
-
-
-
-
-
 
             $("#locationBtn").click(function () {
                 if (navigator.geolocation) {

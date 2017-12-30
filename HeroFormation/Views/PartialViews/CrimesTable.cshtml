@@ -1,0 +1,52 @@
+﻿@model IEnumerable<HeroFormation.Models.Crimes>
+@using System;
+
+<table class="table" id="crimeTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.Street.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @*@Html.Display(Model.Count)*@
+
+    @{ if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.Latitude)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.Longitude)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.Street.Name)
+                    </td>
+
+                    @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>*@
+                </tr>
+            }
+        }
+    }
+</table>
+
