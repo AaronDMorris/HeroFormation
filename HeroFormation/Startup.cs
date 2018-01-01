@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HeroFormation.BusinessLogicLayer.Services;
 using HeroFormation.Data;
 using HeroFormation.Data.Entities;
+using HeroFormation.Interfaces.ServiceInterfaces.ProfileServiceInterfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -36,9 +38,10 @@ namespace HeroFormation
                 .AddJwtBearer();
 
             services.AddDbContext<HeroContext>(cfg => 
-            {
+           {
                 cfg.UseSqlServer(Configuration.GetConnectionString("HeroConnectionString"));
             });
+            services.AddScoped<IProfileService, ProfileService>() ;
             services.AddTransient<HeroSeeder>();
             services.AddMvc();
         }

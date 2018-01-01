@@ -5,17 +5,11 @@
     ViewBag.isHome = false;
 }
 
-<h2>Fight Crime</h2>
+<h1 class="titlePageText">Crime Fighters, Unite!</h1>
 
-<h1>Keep Your Senses On High Alert, Super!</h1>
+<h2>Keep Your Senses On High Alert, Super!</h2>
 <p id="location"></p>
 
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
-
-
-@*@Html.Partial("~/Views/PartialViews/CrimesTable.cshtml")*@
 <h2>Use Your Crime Detecter Below, And Detect Recent Criminal Activity In Your Area</h2>
 <input type="submit" value="Detect Crime" class="btn btn-success" id="locationBtn" />
 <br />
@@ -42,15 +36,12 @@
                 f.type = "POST";
                 f.dataType = "json";
                 f.data = JSON.stringify({ Latitude: latitude, Longitude: longitude });
-                alert(f.data);
                 f.contentType = "application/json";
                 f.success = function (response) {
                     populateData(response);
-                    alert("success");
                 };
                 f.error = function (response) {
-                    alert("failed");
-
+                    alert("HttpPostFailed \n Repsonse:" + response);
                 };
                 $.ajax(f);
 
@@ -269,8 +260,6 @@
                     alert("Your browser does not support geolocation");
                 }
             });
-
-           
 
             function addData(chart, label, data) {
                 chart.data.labels.push(label);

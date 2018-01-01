@@ -8,14 +8,10 @@ namespace HeroFormation.Models
 {
     public class ProfileViewModel
     {
-        [Required]
         public string FirstName { get; set; }
-        [Required]
         public string LastName { get; set; }
-        [Required]
-        public string Password { get; set; }
-        [Required]
         public string Email { get; set; }
         public string UserName { get; set; }
+        public string SuperHeroName { get; set; }
     }
 }

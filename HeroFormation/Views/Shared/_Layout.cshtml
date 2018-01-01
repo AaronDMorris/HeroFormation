@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HeroFormation</title>
+    <title>@ViewData["Title"] - Hero Formation</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">HeroFormation</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" id="heroBrand">Hero Formation</a>
 
             </div>
             <div class="navbar-collapse collapse">
@@ -35,15 +35,23 @@
                     <li><a asp-area="" asp-controller="Account" asp-action="Profile">Profile</a></li>
                     <li><a asp-area="" asp-controller="Crime" asp-action="Crimes">Fight Crime</a></li>
 
+                    <li class="visible-xs-inline-block"></li>
+                    <li></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+    
+        
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout" id="navLogout">Logout</a></li>
                     }
                     else
                     {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login" id="navLogin">Login</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Create" id="navCreate">Create Account</a></li>
                     }
-                </ul>
+                        </ul>
             </div>
         </div>
     </nav>
@@ -53,7 +61,7 @@
         @if (!ViewBag.isHome)
         {
         <footer>
-            <p>&copy; 2017 - HeroFormation</p>
+            <p>&copy; 2018 - Hero Formation</p>
         </footer>
         }
     </div>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HeroFormation.Interfaces.Services.CrimeService
 {
-    interface ICrimeService
+    public interface ICrimeService
     {
         List<Crimes> GetPrevious6MonthsCrimesByLocationAndDate(CoordinatesModel model);
 

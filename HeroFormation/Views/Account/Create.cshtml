@@ -11,7 +11,7 @@
 <h1>Create Account</h1>
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <form method="post">
+        <form method="post" id="createForm">
             <div asp-validation-summary="ModelOnly"></div>
             <div class="form-group">
                 <label asp-for="FirstName">First Name</label>
@@ -29,21 +29,18 @@
                 <span asp-validation-for="Password" class="text-warning"></span>
             </div>
             <div class="form-group">
-                <input asp-for="Email" type="email" class="form-control" />
-                <label asp-for="Email">Email</label>
+                <input asp-for="Email" type="email" class="form-control" id="email" />
+                <label asp-for="Email">Email (Used As Your Username)</label>
                 <span asp-validation-for="Email" class="text-warning"></span>
             </div>
-            <div class="form-group">
-                <input asp-for="UserName" type="email" class="form-control" />
-                <label asp-for="UserName">UserName</label>
-                <span asp-validation-for="UserName" class="text-warning"></span>
-            </div>
-            @*<input asp-for="UserName" type="hidden" class="form-control" value="@Request.Form["Email"]" />*@
+
+            <input asp-for="UserName" type="hidden" class="form-control" value="" id="hiddenUsername" />
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Create" class="btn btn-success" id="createBtn" />
             </div>
         </form>
     </div>
 </div>
+
 

@@ -40,17 +40,42 @@ namespace HeroFormation.Controllers
         [Authorize]
         public IActionResult Profile()
         {
-            ViewData["Message"] = "Your profile page.";
 
             return View();
         }
 
-        //[Authorize]
-        //[HttpGet]
-        //public async Task<IActionResult>Profile(ProfileViewModel model)
-        //{
-            
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Profile(ProfileViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _userManager.FindByNameAsync(model.UserName).Result;
+
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
+                user.UserName = model.Email;
+
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, false);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+
+            }
+
+            return View();
+        }
+
 
         public IActionResult Create()
         {
