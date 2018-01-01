@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using HeroFormation.Services;
 
 namespace HeroFormation.Controllers
 {
@@ -15,70 +16,20 @@ namespace HeroFormation.Controllers
     {
         
         [Authorize]
-        public async Task<ActionResult> Crimes()
+        public IActionResult Crimes()
         {
-
-            string baseUrl = "https://data.police.uk/api/crimes-at-location?date=2017-06&lat=51.8993855&lng=-2.0782533";
-            List<Crimes> crimeInfo = new List<Crimes>();
-
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(baseUrl);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage res = await client.GetAsync(baseUrl);
-
-                if (res.IsSuccessStatusCode)
-                {
-                    var criResponse = res.Content.ReadAsStringAsync().Result;
-
-                    crimeInfo = JsonConvert.DeserializeObject<List<Crimes>>(criResponse);
-
-
-                }
-                return View(crimeInfo);
-            }
-
-        }
-
-        [HttpPost]
-        [Authorize]
-        public async Task<ActionResult> Crimes([FromBody]CoordinatesModel model)
-        {
-
-            string baseUrl = "https://data.police.uk/api/crimes-at-location?date=2017-10&" +
-                "lat=" + model.Latitude + "&" +
-                "lng=" + model.Longitude;
-            List<Crimes> crimeInfo = new List<Crimes>();
-
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(baseUrl);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage res = await client.GetAsync(baseUrl);
-
-                if (res.IsSuccessStatusCode)
-                {
-                    var criResponse = res.Content.ReadAsStringAsync().Result;
-
-                    crimeInfo = JsonConvert.DeserializeObject<List<Crimes>>(criResponse);
-                }
-
-                GetLocation(model);
-                return PartialView("~/Views/PartialViews/CrimesTable.cshtml");
-            }
-
+                return View();
         }
 
 
         [HttpPost]
-        public IActionResult GetLocation([FromBody]CoordinatesModel model)
+        public IActionResult GetCrimesByLocation([FromBody]CoordinatesModel model)
         {
-            return Json(new
-            {
-                result = "OK"
-            });
+            CrimeService crimeService = new CrimeService();
+
+            List<Crimes> crimes = crimeService.GetPrevious6MonthsCrimesByLocationAndDate(model);
+ 
+            return Ok(crimes);
         }
     }
 }

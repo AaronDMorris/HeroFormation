@@ -5,6 +5,7 @@
     "jQuery": "3.2.1",
     "Bootstrap": "3.3.7",
     "jquery-validation": "~1.17.0",
-    "jquery-validation-unobtrusive": "3.2.6"
+    "jquery-validation-unobtrusive": "3.2.6",
+    "Chart-js": "~2.7.1"
   }
 }

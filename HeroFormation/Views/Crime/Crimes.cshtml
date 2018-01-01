@@ -7,24 +7,30 @@
 
 <h2>Fight Crime</h2>
 
-<h1>Location has been detected as..</h1>
+<h1>Keep Your Senses On High Alert, Super!</h1>
 <p id="location"></p>
-<input type="submit" value="Get My Location" class="btn btn-success" id="locationBtn" />
+
 @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>*@
 
 
-@Html.Partial("~/Views/PartialViews/CrimesTable.cshtml")
+@*@Html.Partial("~/Views/PartialViews/CrimesTable.cshtml")*@
+<h2>Use Your Crime Detecter Below, And Detect Recent Criminal Activity In Your Area</h2>
+<input type="submit" value="Detect Crime" class="btn btn-success" id="locationBtn" />
+<br />
+<br />
 
-
+<canvas id="myChart" width="400" height="400" style=""></canvas>
 
 @section scripts{
     <script src="~/js/map.js"></script>
-
+    <script src="~/lib/Chart-js/Chart.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
+
+            
 
             function displayLocation(position) {
 
@@ -32,27 +38,217 @@
                 var longitude = position.coords.longitude.toString();
 
                 var f = {};
-                f.url = '@Url.Action("Crimes", "Crime")';
+                f.url = '@Url.Action("GetCrimesByLocation", "Crime")';
                 f.type = "POST";
                 f.dataType = "json";
                 f.data = JSON.stringify({ Latitude: latitude, Longitude: longitude });
                 alert(f.data);
                 f.contentType = "application/json";
-                //f.success = function (response) {
-                //    alert("success");
-                //};
-                //f.error = function (response) {
-                //    alert("failed");
+                f.success = function (response) {
+                    populateData(response);
+                    alert("success");
+                };
+                f.error = function (response) {
+                    alert("failed");
 
-                //};
+                };
                 $.ajax(f);
 
             };
 
+            function populateData(input)
+            {
+           
+                var antiSocial = 0;
+                var bikeTheft = 0;
+                var burglary = 0;
+                var crimDamageArson = 0;
+                var drugs = 0;
+                var otherCrime = 0;
+                var otherTheft = 0;
+                var possessionOfWeapons = 0;
+                var publicOrder = 0;
+                var robbery = 0;
+                var shoplifting = 0;
+                var theftFromPerson = 0;
+                var vechicleCrime = 0;
+                var violentCrime = 0;
+
+                var labels = [];
+                var data = [];
+
+                for (i = 0; i < input.length; i++) {
+                    
+                    var crime = input[i];
+                    switch (crime["category"])
+                    {
+                        case "anti-social-behaviour":
+                            antiSocial++;
+                            continue;
+                        case "bicycle-theft":
+                            bikeTheft++;
+                            continue;
+                        case "burglary":
+                            burglary++;
+                            continue;
+                        case "criminal-damage-arson":
+                            crimDamageArson++;
+                            continue;
+                        case "drugs":
+                            drugs++;
+                            continue;
+                        case "other-crime":
+                            otherCrime++;
+                            continue;
+                        case "other-theft":
+                            otherTheft++;
+                            continue;
+                        case "possession-of-weapons":
+                            possessionOfWeapons++;
+                            continue;
+                        case "public-order":
+                            publicOrder++;
+                            continue;
+                        case "robbery":
+                            robbery++;
+                            continue;
+                        case "shoplifting":
+                            shoplifting++;
+                            continue;
+                        case "theft-from-the-person":
+                            theftFromPerson++;
+                            continue;
+                        case "vehicle-crime":
+                            vechicleCrime++;
+                            continue;
+                        case "violent-crime":
+                            violentCrime++;
+                            continue;
+
+                    }
+                    
+                }
+
+                if (antiSocial > 0) {
+                    labels.push("Anti-social Behaviour");
+                    data.push(antiSocial);
+                }
+
+                if (bikeTheft > 0) {
+                    labels.push("Bicycle Theft");
+                    data.push(bikeTheft);
+                }
+
+                if (burglary > 0) {
+                    labels.push("Burglary");
+                    data.push(burglary);
+                }
+
+                if (crimDamageArson > 0) {
+                    labels.push("Criminal Damage and Arson");
+                    data.push(crimDamageArson);
+                }
+
+                if (drugs > 0) {
+                    labels.push("Drugs");
+                    data.push(drugs);
+                }
+
+                if (otherCrime > 0) {
+                    labels.push("Other Crime");
+                    data.push(otherCrime);
+                }
+
+                if (otherTheft > 0) {
+                    labels.push("Other Theft");
+                    data.push(otherTheft);
+                }
+
+                if (possessionOfWeapons > 0) {
+                    labels.push("Poessession of Weapons");
+                    data.push(possessionOfWeapons);
+                }
+
+                if (publicOrder > 0) {
+                    labels.push("Public Order");
+                    data.push(publicOrder);
+                }
+
+                if (robbery > 0) {
+                    labels.push("Robbery");
+                    data.push(robbery);
+                }
+
+                if (shoplifting > 0) {
+                    labels.push("Shoplifting");
+                    data.push(shoplifting);
+                }
+
+                if (theftFromPerson > 0) {
+                    labels.push("Theft from the Person");
+                    data.push(theftFromPerson);
+                }
+
+                if (vechicleCrime > 0) {
+                    labels.push("Vehicle Crime");
+                    data.push(vechicleCrime);
+                }
+
+                if (violentCrime > 0) {
+                    labels.push("Violent Crime");
+                    data.push(violentCrime);
+                }
 
 
-
-
+                var ctx = document.getElementById("myChart").getContext('2d');
+                var options = {};
+                       
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Criminal Activity in your Area',
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)',
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)',
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)'
+                            ],
+                            data: data,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: options
+                });  
+                
+            }
 
             $("#locationBtn").click(function () {
                 if (navigator.geolocation) {
@@ -62,23 +258,15 @@
                 }
             });
 
-            function postCoords(position)
-            {
-                var f = {};
-                f.url = '@Url.Action("GetLocation", "Crime")';
-                f.type = "POST";
-                f.dataType = "json";
-                f.data = JSON.stringify({ Longitude: position.coords.latitude, Latitude: position.coords.longitude });
-                f.contentType = "application/json";
-                f.success = function (response) {
-                    alert("success");
-                };
-                f.error = function (response) {
-                    alert("failed");
+           
 
-                };
-                $.ajax(f);
-            };
+            function addData(chart, label, data) {
+                chart.data.labels.push(label);
+                chart.data.datasets.forEach((dataset) => {
+                    dataset.data.push(data);
+                });
+                chart.update();
+            }
 
         });
 
