@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@model ProfileViewModel
+@using HeroFormation.Interfaces.ServiceInterfaces.ProfileServiceInterfaces
+@inject IProfileService ProfileService
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -37,13 +40,16 @@
 
                     <li class="visible-xs-inline-block"></li>
                     <li></li>
-                    
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-    
-        
+
+
                     @if (User.Identity.IsAuthenticated)
                     {
+                        var user = ProfileService.RetrieveCurrentUser(User.Identity.Name);
+
+                        <li>Hi, @user.SuperHeroName</li>
                         <li><a asp-area="" asp-controller="Account" asp-action="Logout" id="navLogout">Logout</a></li>
                     }
                     else
@@ -51,7 +57,7 @@
                         <li><a asp-area="" asp-controller="Account" asp-action="Login" id="navLogin">Login</a></li>
                         <li><a asp-area="" asp-controller="Account" asp-action="Create" id="navCreate">Create Account</a></li>
                     }
-                        </ul>
+                </ul>
             </div>
         </div>
     </nav>
@@ -60,9 +66,9 @@
         <hr />
         @if (!ViewBag.isHome)
         {
-        <footer>
-            <p>&copy; 2018 - Hero Formation</p>
-        </footer>
+            <footer>
+                <p>&copy; 2018 - Hero Formation</p>
+            </footer>
         }
     </div>
 

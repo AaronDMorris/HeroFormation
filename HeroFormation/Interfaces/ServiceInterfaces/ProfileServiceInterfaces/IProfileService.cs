@@ -10,5 +10,6 @@ namespace HeroFormation.Interfaces.ServiceInterfaces.ProfileServiceInterfaces
     public interface IProfileService
     {
         ProfileViewModel RetrieveCurrentUser(string username);
+        string GenerateSuperheroName(string firstName, string lastName);
     }
 }

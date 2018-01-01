@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using HeroFormation.Data.Entities;
+using HeroFormation.Interfaces.ServiceInterfaces.ProfileServiceInterfaces;
 using HeroFormation.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -17,20 +18,23 @@ namespace HeroFormation.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly SignInManager<StoreUser> _signInManager;
         private readonly UserManager<StoreUser> _userManager;
+        private readonly IProfileService _profileService;
 
         public AccountController(ILogger<AccountController> logger,
             SignInManager<StoreUser> signInManager,
-            UserManager<StoreUser> userManager)
+            UserManager<StoreUser> userManager,
+            IProfileService profileService)
         {
             _logger = logger;
             _signInManager = signInManager;
             _userManager = userManager;
+            _profileService = profileService;
         }
 
 
         public IActionResult Login()
         {
-            if (this.User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -40,7 +44,6 @@ namespace HeroFormation.Controllers
         [Authorize]
         public IActionResult Profile()
         {
-
             return View();
         }
 
@@ -93,7 +96,9 @@ namespace HeroFormation.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     UserName = model.Email,
-                    Email = model.Email
+                    Email = model.Email,
+                    SuperHeroName = _profileService.GenerateSuperheroName(model.FirstName, model.LastName)
+                    
 
                 };
 
@@ -135,7 +140,7 @@ namespace HeroFormation.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Crimes", "Crime");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }
@@ -154,5 +159,7 @@ namespace HeroFormation.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+      
     }
 }
