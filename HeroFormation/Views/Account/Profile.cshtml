@@ -1,8 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "Profile";
     ViewBag.isHome = false;
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="navbar-brand navbar-right">
+            Hi, @User.Identity.Name
+
+        </div>
+    }
+</p>

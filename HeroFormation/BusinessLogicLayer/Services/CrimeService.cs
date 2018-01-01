@@ -156,8 +156,6 @@ namespace HeroFormation.Services
                 "lat=" + Latitude + "&" +
                 "lng=" + Longitude;
 
-            Console.WriteLine(url);
-
             return url;
         }
 
