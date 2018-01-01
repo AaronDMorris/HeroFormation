@@ -1,4 +1,5 @@
-﻿using HeroFormation.Models;
+﻿using HeroFormation.Interfaces.Services.CrimeService;
+using HeroFormation.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HeroFormation.Services
 {
-    public class CrimeService
+    public class CrimeService : ICrimeService
     {
 
         [Authorize]
@@ -102,7 +103,6 @@ namespace HeroFormation.Services
 
         }
 
-        [Authorize]
         private async Task<List<Crimes>> GetCrimesByLocationAndUrl(CoordinatesModel model, string Url)
         {
 
