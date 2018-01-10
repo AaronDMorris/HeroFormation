@@ -92,7 +92,7 @@ namespace HeroFormation.BusinessLogicLayer.Services
             }
             else if (firstName[0] == 'L')
             {
-                superheroName += "Secret Angent";
+                superheroName += "Secret Agent";
             }
             else if (firstName[0] == 'M')
             {
