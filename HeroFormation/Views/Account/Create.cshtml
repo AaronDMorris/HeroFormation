@@ -8,7 +8,8 @@
 <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 }
-<h1>Create Account</h1>
+@*The following form is used to recieve the user's inpuit, to be able to create a new account*@
+<h1 class="badaboomIfyCenter">Create Account</h1>
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <form method="post" id="createForm">
@@ -24,16 +25,15 @@
                 <span asp-validation-for="LastName" class="text-warning"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password">Password</label>
-                <input asp-for="Password" type="password" class="form-control" />
-                <span asp-validation-for="Password" class="text-warning"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Email">Email (Used As Your Username)</label>
                 <input asp-for="Email" type="email" class="form-control" id="email" />
                 <span asp-validation-for="Email" class="text-warning"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-warning"></span>
+            </div>
             <input asp-for="UserName" type="hidden" class="form-control" value="" id="hiddenUsername" />
 
             <div class="form-group">

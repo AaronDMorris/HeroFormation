@@ -15,18 +15,26 @@
 <br />
 <br />
 
-<canvas id="myChart" width="400" height="400" style=""></canvas>
+<canvas id="crimeChart" width="400" height="400" style=""></canvas>
 
 @section scripts{
-    <script src="~/js/map.js"></script>
     <script src="~/lib/Chart-js/Chart.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
+            //The following JS scripts are kept inline due to the use of Razor View functionality = To be removed when a fix is found
 
-            
+            //Upon clicking the detect crime button, obtain the user's location via the browser's native geolocation parse it to the postLocationToTheServer function
+            $("#locationBtn").click(function () {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(postLocationToTheServer);
+                } else {
+                    alert("Your browser does not support geolocation");
+                }
+            });
 
-            function displayLocation(position) {
+            //This function makes a HTTP post of the user's position to the Crime Controller on the server and parses the result to the function; that creates the chart used to display the response
+            function postLocationToTheServer(position) {
 
                 var latitude = position.coords.latitude.toString();
                 var longitude = position.coords.longitude.toString();
@@ -47,6 +55,7 @@
 
             };
 
+            //The following function interprets the crime data into its associated categeories, and displays them on a pie chart
             function populateData(input)
             {
            
@@ -191,7 +200,7 @@
                 }
 
 
-                var ctx = document.getElementById("myChart").getContext('2d');
+                var ctx = document.getElementById("crimeChart").getContext('2d');
                 var options = {
                     title: {
                         display: true,
@@ -253,14 +262,7 @@
                 
             }
 
-            $("#locationBtn").click(function () {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(displayLocation);
-                } else {
-                    alert("Your browser does not support geolocation");
-                }
-            });
-
+            //CURRENTLY UNUSED - This function can be used to post additional data to a chart already displayed 
             function addData(chart, label, data) {
                 chart.data.labels.push(label);
                 chart.data.datasets.forEach((dataset) => {

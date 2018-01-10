@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HeroFormation.Data
 {
+    //This is the repository class, DB calls ONLY here
     public class HeroRepository
     {
         private readonly HeroContext _context;
@@ -15,9 +16,6 @@ namespace HeroFormation.Data
             _context = context;
         }
 
-        //public IEnumerable<UserStore> GetAllUsers()
-        //{
-        //    return _context.Users.ToList();
-        //}
+   
     }
 }

@@ -1,24 +1,25 @@
-﻿@font-face {
+﻿/*Load the BadaBoom font from the project directory, and apply it to used by the font-family 'BadaBoom BB'*/
+@font-face {
     font-family: 'BadaBoom BB';
     src: url('../fonts/BADABB_.TTF');
 }
 
 body {
     /*overflow-y: scroll;
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;*/
+    overflow-x: scroll;/*
     -webkit-user-select: none; /* Chrome all / Safari all */
+    -webkit-overflow-scrolling: touch;
     -moz-user-select: none; /* Firefox all */
     -ms-user-select: none; /* IE 10+ */
     user-select: none; /* Likely future */
-    font-family: Cambria;
+    font-family: sans-serif;
     color: white;
     text-shadow: 1px 1px black;
     position: relative;
     height: 100vh;
     width: 100%;
     padding-top: 50px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     padding: 0;
     margin: 0;
     background: url('../images/skyline.png') no-repeat fixed center;
@@ -33,6 +34,7 @@ label {
     text-shadow: 1px 1px black;
 }
 
+/*Navbar styling*/
 .navbar-header {
     background-color: #0052a5;
     color: white;
@@ -88,35 +90,10 @@ label {
         color:#ed3236;
     }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
-}
-
-/* QR code generator */
-#qrCode {
-    margin: 15px;
-}
-
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
 
 
-}
 
-#heroBrand{
-    font-family: 'BadaBoom BB';
-}
+
 
 
 .navbar .divider-vertical {
@@ -141,8 +118,14 @@ label {
     border-top: 2px solid black;
 }
 
-.badaboomIfy{
+/* Classes used to add Badaboom Font and related styling*/
+.badaboomIfy {
     font-family: 'BadaBoom BB';
+}
+
+.badaboomIfyCenter {
+    font-family: 'BadaBoom BB';
+    text-align: center;
 }
 
 .titlePageText {
@@ -153,4 +136,9 @@ label {
     padding-bottom: 10px;
 
 }
+
+#heroBrand {
+    font-family: 'BadaBoom BB';
+}
+
 

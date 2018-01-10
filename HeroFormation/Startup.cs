@@ -39,6 +39,7 @@ namespace HeroFormation
 
             services.AddDbContext<HeroContext>(cfg => 
            {
+               //Retrieve the connection string stored in config.json, pointing to the database hosted on MS Azure
                 cfg.UseSqlServer(Configuration.GetConnectionString("HeroConnectionString"));
             });
             services.AddScoped<IProfileService, ProfileService>() ;

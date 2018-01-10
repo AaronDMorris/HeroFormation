@@ -18,6 +18,7 @@ namespace HeroFormation.BusinessLogicLayer.Services
             _userManager = userManager;
         }
 
+        //Service method to retrieve the current user, as a ProfileViewModel object, accessed via the parsed username string
         public ProfileViewModel RetrieveCurrentUser(string username)
         {
 
@@ -36,6 +37,7 @@ namespace HeroFormation.BusinessLogicLayer.Services
 
         }
 
+        //The following method generates a Superhero name based upon the first letters of a user's name
         public string GenerateSuperheroName(string firstName, string lastName)
         {
             string superheroName = "";

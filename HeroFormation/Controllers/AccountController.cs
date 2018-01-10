@@ -31,7 +31,7 @@ namespace HeroFormation.Controllers
             _profileService = profileService;
         }
 
-
+        //If the user successfully logs in, redirect to them to the homepage
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -41,12 +41,14 @@ namespace HeroFormation.Controllers
             return View();
         }
 
+        //Return the profile view
         [Authorize]
         public IActionResult Profile()
         {
             return View();
         }
 
+        //Find the current logged in user, and populate the profile view model with their data
         [HttpPost]
         public async Task<IActionResult> Profile(ProfileViewModel model)
         {
@@ -79,13 +81,14 @@ namespace HeroFormation.Controllers
             return View();
         }
 
-
+        //Return the create view
         public IActionResult Create()
         {
             
             return View();
         }
 
+        //Create a new account with the details parsed from the view model
         [HttpPost]
         public async Task<IActionResult> Create(CreateViewModel model)
         {
@@ -121,6 +124,7 @@ namespace HeroFormation.Controllers
             return View();
         }
 
+        //Log the user in with the credentials from the view model, and redirect them depending on the return URL
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -153,6 +157,7 @@ namespace HeroFormation.Controllers
             return View();
         }
 
+        //Log the user out
         [HttpGet]
         public async Task<IActionResult> Logout()
         {

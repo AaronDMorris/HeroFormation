@@ -14,7 +14,7 @@ namespace HeroFormation.Services
 {
     public class CrimeService : ICrimeService
     {
-
+        //The following method retrieves the previous 6 month's of Crime data from the UK Police API, based upon the COORDS parsed via a CoordinatesModel object
         [Authorize]
         public List<Crimes> GetPrevious6MonthsCrimesByLocationAndDate(CoordinatesModel model)
         {
@@ -103,6 +103,9 @@ namespace HeroFormation.Services
 
         }
 
+        #region Private Methods
+        //This method, is the method, that executes the HTTP GET request to the UK Police API. Its parameters are a CoordinatesModel model and the URL required to execute the GET. The crimes associated are returned as a Task list of the Crime class
+        [HttpGet]
         private async Task<List<Crimes>> GetCrimesByLocationAndUrl(CoordinatesModel model, string Url)
         {
 
@@ -131,7 +134,7 @@ namespace HeroFormation.Services
 
 
         }
-
+        
         private int[] GetPreviousMonthAndYearAsInts(DateTime date)
         {
             int[] result = new int[2];
@@ -158,7 +161,7 @@ namespace HeroFormation.Services
 
             return url;
         }
-
+        #endregion
 
     }
 }

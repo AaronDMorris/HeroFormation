@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" id="heroBrand">Hero Formation</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand badaboomIfy" >Hero Formation</a>
 
             </div>
             <div class="navbar-collapse collapse">
@@ -38,8 +38,8 @@
                     <li><a asp-area="" asp-controller="Account" asp-action="Profile">Profile</a></li>
                     <li><a asp-area="" asp-controller="Crime" asp-action="Crimes">Fight Crime</a></li>
 
-                    <li class="visible-xs-inline-block"></li>
-                    <li></li>
+                    @*<li class="visible-xs-inline-block"></li>
+                    <li></li>*@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -49,8 +49,8 @@
                     {
                         var user = ProfileService.RetrieveCurrentUser(User.Identity.Name);
 
-                        <li>Hi, @user.SuperHeroName</li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="Logout" id="navLogout">Logout</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Profile" id="userGreeting"> Hi, @user.SuperHeroName, </a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout" id="navLogout">Logout?</a></li>
                     }
                     else
                     {
@@ -64,6 +64,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+        @*Display the copyright information on every page, except the home*@
         @if (!ViewBag.isHome)
         {
             <footer>

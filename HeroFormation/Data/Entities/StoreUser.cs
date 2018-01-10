@@ -8,6 +8,7 @@ namespace HeroFormation.Data.Entities
 {
     public class StoreUser : IdentityUser
     {
+        //Properties that extend the default MS StoreUser class
         public string SuperHeroName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

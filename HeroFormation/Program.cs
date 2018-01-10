@@ -28,6 +28,7 @@ namespace HeroFormation
             //Remove the default configuration options
             builder.Sources.Clear();
 
+            //Ensure that the config.json is a part of the setup. Environment variables not currently used, but are readied for future use
             builder.AddJsonFile("config.json", false, true)
                    .AddEnvironmentVariables();
         }

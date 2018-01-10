@@ -23,6 +23,7 @@ namespace HeroFormation.Data
             _userManager = userManager;
         }
 
+        //This method ensures that a database has been created, and that a default user has been inserted
         public async Task Seed()
         {
             _context.Database.EnsureCreated();

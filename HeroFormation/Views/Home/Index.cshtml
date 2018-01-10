@@ -9,7 +9,7 @@
     <img src="~/images/splash.png" class="splash-img center-block img-responsive" />
     <div class="form-group" id="loginBtnRow">
         <div class="row" >
-            <div class="text-center col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4">
+            <div class="text-center col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <button type="button" id="loginButton" class="btn" onclick="location.href='@Url.Action("Login", "Account")'">Login</button>
@@ -24,7 +24,7 @@
     <br />
     <div class="form-group" id="createAccountBtnRow">
         <div class="row" >
-            <div class="text-center col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4">
+            <div class="text-center col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
                 @if (!User.Identity.IsAuthenticated)
                 {
                 <button type="button" id="createAccountButton" class="btn" onclick="location.href='@Url.Action("Create", "Account")'">Create Account</button>

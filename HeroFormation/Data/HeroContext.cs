@@ -13,7 +13,6 @@ namespace HeroFormation.Data
         public HeroContext(DbContextOptions<HeroContext> options): base(options)
         {
         }
-     
-        //public DbSet<StoreUser> Users { get; set; }
+    
     }
 }

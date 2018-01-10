@@ -14,14 +14,14 @@ namespace HeroFormation.Controllers
 {
     public class CrimeController : Controller
     {
-        
+        //Default Crimes view returned via this method - only accessible by a logged in user
         [Authorize]
         public IActionResult Crimes()
         {
                 return View();
         }
 
-
+        //This method recieves the HTTP post sent from the client side. A CoordinatesModel is generated with the user's current location and returned as an IActionResult
         [HttpPost]
         public IActionResult GetCrimesByLocation([FromBody]CoordinatesModel model)
         {
