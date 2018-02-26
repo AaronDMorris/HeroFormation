@@ -1,5 +1,5 @@
 ﻿{
   "ConnectionStrings": {
-    "HeroConnectionString": "Server=tcp:heroformation.database.windows.net,1433;Initial Catalog=HeroFormation;Persist Security Info=False;User ID=hero;Password=M.c322gh8;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    "HeroConnectionString": "Server=tcp:heroformation.database.windows.net,1433;Initial Catalog=HeroFormation;Persist Security Info=False;User ID=hero;Password=;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
 }
